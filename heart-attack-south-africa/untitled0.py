@@ -174,3 +174,39 @@ df_scaled[numerical_features] = scaler.fit_transform(df[numerical_features])
 
 # Tampilkan hasil normalisasi
 print(df_scaled.head())
+
+
+#Feature Selection
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import SelectFromModel
+
+# Misal X adalah fitur dan y adalah label target X = df.drop(columns=['Heart_Attack_Outcome']), y = df['Heart_Attack_Outcome']
+# Pisahkan fitur (X) dan target (y)
+X = df.drop(columns=['Heart_Attack_Outcome'])  # Semua fitur kecuali target
+y = df['Heart_Attack_Outcome']  # Target klasifikasi (0 atau 1)
+
+# 1️⃣ Buat model Random Forest
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X, y)
+
+# 2️⃣ Ambil feature importance
+feature_importances = model.feature_importances_
+feature_names = X.columns
+
+# 3️⃣ Pilih fitur yang importance-nya lebih besar dari median
+selector = SelectFromModel(model, threshold="median", prefit=True)
+X_selected = selector.transform(X)
+
+# 4️⃣ Lihat fitur yang dipilih
+selected_features = X.columns[selector.get_support()]
+print("Fitur yang dipilih:", selected_features.tolist())
+
+# 5️⃣ Visualisasi fitur penting
+sorted_idx = np.argsort(feature_importances)[::-1]
+plt.figure(figsize=(10, 6))
+plt.bar(range(len(feature_importances)), feature_importances[sorted_idx], align="center")
+plt.xticks(range(len(feature_importances)), np.array(feature_names)[sorted_idx], rotation=90)
+plt.xlabel("Fitur")
+plt.ylabel("Importance Score")
+plt.title("Feature Importance dari Random Forest")
+plt.show()
