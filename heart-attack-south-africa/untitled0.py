@@ -210,3 +210,66 @@ plt.xlabel("Fitur")
 plt.ylabel("Importance Score")
 plt.title("Feature Importance dari Random Forest")
 plt.show()
+
+from sklearn.model_selection import train_test_split
+
+# Split data jadi training & testing (80%-20%)
+X_train, X_test, y_train, y_test = train_test_split(X_selected, y, test_size=0.2, random_state=42)
+
+# 📌 4️⃣ Scaling (Hanya untuk model yang butuh)
+scaler = StandardScaler()
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+
+# 📌 5️⃣ Definisikan Model
+models = {
+    "K-Nearest Neighbors (KNN)": KNeighborsClassifier(n_neighbors=5),
+    "Decision Tree (DT)": DecisionTreeClassifier(max_depth=10, min_samples_split=5, random_state=42),
+    "Random Forest (RF)": RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42),
+    "Support Vector Machine (SVM)": SVC(kernel='linear', probability=True),
+    "Naive Bayes (NB)": GaussianNB()
+}
+
+
+# 📌 6️⃣ Fungsi Evaluasi Model
+def evaluate_model(model, X_test, y_test):
+    y_pred = model.predict(X_test)
+    cm = confusion_matrix(y_test, y_pred)
+    tn, fp, fn, tp = cm.ravel()
+    results = {
+        'Confusion Matrix': cm,
+        'True Positive (TP)': tp,
+        'False Positive (FP)': fp,
+        'False Negative (FN)': fn,
+        'True Negative (TN)': tn,
+        'Accuracy': accuracy_score(y_test, y_pred),
+        'Precision': precision_score(y_test, y_pred),
+        'Recall': recall_score(y_test, y_pred),
+        'F1-Score': f1_score(y_test, y_pred)
+    }
+    return results
+
+# 📌 7️⃣ Latih & Evaluasi Model
+results = {}
+for name, model in models.items():
+    if name in ["K-Nearest Neighbors (KNN)", "Support Vector Machine (SVM)", "Naive Bayes (NB)"]:
+        model.fit(X_train_scaled, y_train)
+        results[name] = evaluate_model(model, X_test_scaled, y_test)
+    else:
+        model.fit(X_train, y_train)
+        results[name] = evaluate_model(model, X_test, y_test)
+        
+# 📌 8️⃣ Buat DataFrame untuk Ringkasan Hasil
+summary_df = pd.DataFrame([
+    {
+        'Model': name,
+        'Accuracy': metrics['Accuracy'],
+        'Precision': metrics['Precision'],
+        'Recall': metrics['Recall'],
+        'F1-Score': metrics['F1-Score']
+    }
+    for name, metrics in results.items()
+])
+
+# 📌 9️⃣ Tampilkan Hasil
+print(summary_df)
