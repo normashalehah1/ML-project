@@ -80,7 +80,6 @@ Hasil Prediksi: **"Risiko Serangan Jantung: Ya"**
 
 
 ---
-### 📌 Catatan:
-Dokumentasi ini dibuat untuk memberikan gambaran menyeluruh tentang proses analisis dan pembuatan model prediksi serangan jantung. Jika ada tambahan atau perbaikan, silakan disesuaikan! 😊
+
 
 
