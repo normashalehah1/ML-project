@@ -1,4 +1,4 @@
-# Dokumentasi Analisis Prediksi Risiko Serangan Jantung
+# Analisis Prediksi Risiko Serangan Jantung
 
 ## 1. Pendahuluan
 Dataset ini berisi faktor risiko serangan jantung pada individu di Afrika Selatan. Data ini mencakup detail demografis, riwayat medis, kebiasaan gaya hidup, dan pengukuran klinis untuk mengevaluasi kemungkinan serangan jantung. Analisis ini bertujuan untuk membangun model machine learning yang dapat memprediksi risiko serangan jantung berdasarkan fitur-fitur yang relevan.
