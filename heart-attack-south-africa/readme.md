@@ -73,13 +73,6 @@ new_data = pd.DataFrame([{
 ```
 Hasil Prediksi: **"Risiko Serangan Jantung: Ya"**
 
-## 6. Kesimpulan
-- Decision Tree memiliki akurasi tertinggi dan bisa dilihat bahwa tidak terjadi overfitting.
-- Random Forest menawarkan keseimbangan terbaik antara akurasi dan generalisasi.
-- Fitur yang dipilih sangat relevan untuk prediksi risiko serangan jantung.
-
-
----
 
 
 
