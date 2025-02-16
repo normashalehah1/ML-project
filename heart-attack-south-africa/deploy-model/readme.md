@@ -7,27 +7,9 @@ Repository ini berisi aplikasi web sederhana untuk memprediksi penyakit jantung 
 - Menggunakan model Decision Tree yang telah di-train untuk melakukan prediksi.
 - Hasil prediksi ditampilkan sebagai "Ya" (penyakit jantung) atau "Tidak" (tidak ada penyakit jantung).
 
-## Struktur Folder
-/prediksi_jantung
-│── /templates
-│   └── index.html       # File frontend HTML
-│── /static
-│   └── style.css        # File styling (optional)
-│── decision_tree_model.pkl  # File model yang telah di-train
-│── app.py               # File aplikasi Flask
-│── requirements.txt     # Daftar library yang diperlukan
-│── README.md            # Dokumentasi proyek
+Berikut adalah tampilan web aplikasi setelah berhasil dideploy:
+![Prediksi_jantung - Personal - Microsoft​ Edge 15_02_2025 22_29_13](https://github.com/user-attachments/assets/70c3b021-73ad-4ab6-ad2a-40a8a094cd45)
 
-## Cara Install dan Menjalankan Aplikasi
+![Prediksi_jantung - Personal - Microsoft​ Edge 15_02_2025 22_30_32](https://github.com/user-attachments/assets/1658cf36-c6fe-427a-90ee-1285b950b946)
 
-1. **Clone Repository**
-   ```bash
-   git clone https://github.com/username/nama-repo.git
-   cd nama-repo
-2. **Buat Virtual Environment**
-   ```
-   python -m venv venv
-   source venv/bin/activate  # Untuk Mac/Linux
-   venv\Scripts\activate     # Untuk Windows
-
-3. 
+Catatan: Gambar di atas merupakan contoh tampilan web yang telah selesai.
